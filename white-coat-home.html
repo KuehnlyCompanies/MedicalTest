@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>White Coat Home Program — Isaac Kuehn, Realtor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --black-mid: #111111;
+    --white: #FFFFFF;
+    --off-white: #F7F7F5;
+    --light-gray: #EFEFED;
+    --mid-gray: #999999;
+    --dark-gray: #444444;
+    --rule: rgba(0,0,0,0.1);
+    --rule-light: rgba(0,0,0,0.06);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--white);
+    color: var(--black);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ──────────────────────────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 60px;
+    height: 68px;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .nav-brand {
+    display: flex; flex-direction: column; gap: 1px;
+  }
+  .nav-brand .program-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px; font-weight: 600; letter-spacing: 0.02em;
+    color: var(--black);
+  }
+  .nav-brand .team-name {
+    font-size: 10px; font-weight: 400; letter-spacing: 0.18em;
+    color: var(--mid-gray); text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex; gap: 40px; list-style: none;
+  }
+  .nav-links a {
+    font-size: 12px; font-weight: 400; letter-spacing: 0.1em;
+    text-transform: uppercase; text-decoration: none;
+    color: var(--dark-gray);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--black); }
+
+  .nav-cta {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; text-decoration: none;
+    color: var(--white);
+    background: var(--black);
+    padding: 10px 24px;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--dark-gray); }
+
+  /* ── HERO ─────────────────────────────────────────────────────── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex; align-items: center;
+    background: var(--black-mid);
+    overflow: hidden;
+    padding-top: 68px;
+  }
+
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+
+  .hero-glow {
+    position: absolute;
+    top: -20%; right: -10%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .hero-glow-2 {
+    position: absolute;
+    bottom: -20%; left: -5%;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(255,255,255,0.02) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 1200px; margin: 0 auto;
+    padding: 100px 60px;
+    display: grid; grid-template-columns: 1fr 400px; gap: 80px; align-items: center;
+  }
+
+  .hero-eyebrow {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 28px;
+  }
+  .hero-eyebrow-line {
+    width: 32px; height: 1px; background: rgba(255,255,255,0.3);
+  }
+  .hero-eyebrow span {
+    font-size: 10px; font-weight: 500; letter-spacing: 0.22em;
+    text-transform: uppercase; color: rgba(255,255,255,0.45);
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 6vw, 84px);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--white);
+    margin-bottom: 32px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: rgba(255,255,255,0.75);
+  }
+
+  .hero-sub {
+    font-size: 16px; font-weight: 300; line-height: 1.75;
+    color: rgba(255,255,255,0.5);
+    max-width: 500px;
+    margin-bottom: 48px;
+  }
+
+  .hero-actions {
+    display: flex; gap: 16px; align-items: center;
+  }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--white);
+    color: var(--black);
+    font-size: 12px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; text-decoration: none;
+    padding: 15px 32px;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--light-gray); transform: translateY(-1px); }
+
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: rgba(255,255,255,0.5);
+    font-size: 12px; font-weight: 400; letter-spacing: 0.08em;
+    text-decoration: none;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--white); border-color: rgba(255,255,255,0.4); }
+
+  /* Hero Card */
+  .hero-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 36px;
+  }
+
+  .hero-card-title {
+    font-size: 10px; font-weight: 500; letter-spacing: 0.2em;
+    text-transform: uppercase; color: rgba(255,255,255,0.4);
+    margin-bottom: 24px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .hero-stat {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+    margin-bottom: 28px;
+  }
+
+  .stat-item {}
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px; font-weight: 600;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-num span {
+    font-size: 22px; color: rgba(255,255,255,0.6);
+  }
+  .stat-label {
+    font-size: 11px; font-weight: 300; line-height: 1.4;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .hero-card-list {
+    list-style: none; display: flex; flex-direction: column; gap: 10px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 20px;
+  }
+  .hero-card-list li {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.55);
+  }
+  .hero-card-list li::before {
+    content: '';
+    width: 4px; height: 4px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── ELIGIBILITY BAR ──────────────────────────────────────────── */
+  .elig-bar {
+    background: var(--off-white);
+    border-bottom: 1px solid var(--rule);
+    padding: 18px 60px;
+    overflow: hidden;
+  }
+
+  .elig-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  }
+
+  .elig-label {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--dark-gray);
+    white-space: nowrap;
+    padding-right: 16px;
+    border-right: 1px solid var(--rule);
+  }
+
+  .elig-tags {
+    display: flex; gap: 8px; flex-wrap: wrap;
+  }
+
+  .elig-tag {
+    font-size: 11px; font-weight: 400;
+    color: var(--dark-gray);
+    background: var(--white);
+    border: 1px solid var(--rule);
+    padding: 4px 13px;
+  }
+
+  /* ── SECTIONS ─────────────────────────────────────────────────── */
+  section { position: relative; }
+
+  .container {
+    max-width: 1200px; margin: 0 auto;
+    padding: 100px 60px;
+  }
+
+  .section-eyebrow {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 20px;
+  }
+  .section-eyebrow-line {
+    width: 28px; height: 1px; background: var(--black);
+  }
+  .section-eyebrow span {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--dark-gray);
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 54px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--black);
+    margin-bottom: 20px;
+  }
+  .section-title em { font-style: italic; }
+
+  .section-intro {
+    font-size: 15px; font-weight: 300; line-height: 1.8;
+    color: var(--mid-gray);
+    max-width: 540px;
+    margin-bottom: 60px;
+  }
+
+  /* ── LOAN SECTION ─────────────────────────────────────────────── */
+  .loan-section { background: var(--white); }
+
+  .loan-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px;
+    background: rgba(14,32,68,0.08);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 48px;
+  }
+
+  .loan-card {
+    background: var(--white);
+    padding: 36px 32px;
+    transition: background 0.2s;
+  }
+  .loan-card:hover { background: var(--off-white); }
+
+  .loan-card-num {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.16em;
+    color: var(--mid-gray);
+    margin-bottom: 16px;
+  }
+
+  .loan-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 600;
+    color: var(--black);
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .loan-card-body {
+    font-size: 13px; font-weight: 300; line-height: 1.75;
+    color: var(--mid-gray);
+  }
+
+  .loan-card-highlight {
+    display: inline-block;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.06em;
+    color: var(--black);
+    background: var(--off-white);
+    border: 1px solid var(--rule);
+    padding: 4px 10px;
+    margin-top: 14px;
+  }
+
+  /* Comparison Table */
+  .compare-wrap {
+    background: var(--white);
+    overflow: hidden;
+    border: 1px solid var(--rule);
+  }
+
+  .compare-title {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--mid-gray);
+    padding: 18px 28px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  table.compare {
+    width: 100%; border-collapse: collapse;
+  }
+  table.compare th {
+    padding: 14px 20px;
+    text-align: left;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--rule);
+  }
+  table.compare th:first-child { width: 28%; color: var(--dark-gray); }
+  table.compare th:nth-child(2) {
+    background: var(--black);
+    color: var(--white);
+  }
+  table.compare th:nth-child(3), table.compare th:nth-child(4) {
+    color: var(--mid-gray);
+    background: var(--off-white);
+  }
+
+  table.compare td {
+    padding: 12px 20px;
+    font-size: 13px; font-weight: 300;
+    border-bottom: 1px solid var(--rule-light);
+    color: var(--dark-gray);
+  }
+  table.compare tr:last-child td { border-bottom: none; }
+  table.compare td:first-child { font-weight: 500; color: var(--black); font-size: 12px; }
+  table.compare td:nth-child(2) {
+    background: rgba(0,0,0,0.02);
+    font-weight: 400;
+    color: var(--black);
+  }
+  table.compare td:nth-child(3), table.compare td:nth-child(4) {
+    color: var(--mid-gray);
+    background: rgba(0,0,0,0.01);
+  }
+  .check { color: var(--black); font-weight: 500; }
+  .x { color: var(--mid-gray); }
+
+  /* ── STUDENT DEBT CALLOUT ─────────────────────────────────────── */
+  .debt-callout {
+    background: var(--black);
+    padding: 44px 52px;
+    display: grid; grid-template-columns: 1fr 280px; gap: 48px; align-items: center;
+    margin-top: 40px;
+  }
+
+  .debt-callout h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; font-weight: 300; font-style: italic;
+    color: var(--white); margin-bottom: 14px;
+  }
+  .debt-callout p {
+    font-size: 14px; font-weight: 300; line-height: 1.75;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .debt-numbers {
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  .debt-num-item { text-align: center; }
+  .debt-num-item .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px; font-weight: 600;
+    color: var(--white);
+  }
+  .debt-num-item .label {
+    font-size: 11px; color: rgba(255,255,255,0.35);
+    letter-spacing: 0.06em;
+  }
+  .debt-divider { width: 100%; height: 1px; background: rgba(255,255,255,0.1); }
+
+  /* ── VENDORS ──────────────────────────────────────────────────── */
+  .vendors-section { background: var(--off-white); }
+
+  .vendors-intro-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    margin-bottom: 60px; align-items: end;
+  }
+
+  .vendor-note {
+    font-size: 14px; font-weight: 300; line-height: 1.75;
+    color: var(--mid-gray);
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .vendor-categories {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    background: var(--rule);
+    overflow: hidden;
+    margin-bottom: 40px;
+  }
+
+  .vendor-cat {
+    background: var(--white);
+    padding: 28px 32px;
+    transition: background 0.2s;
+  }
+  .vendor-cat:hover { background: var(--off-white); }
+
+  .vendor-cat-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 14px;
+  }
+
+  .vendor-cat-name {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--dark-gray);
+  }
+
+  .vendor-badge {
+    font-size: 10px; font-weight: 500; letter-spacing: 0.04em;
+    color: var(--black);
+    background: var(--off-white);
+    border: 1px solid var(--rule);
+    padding: 3px 10px;
+  }
+
+  .vendor-names {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 400;
+    color: var(--black);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  .vendor-benefit {
+    font-size: 13px; font-weight: 300;
+    color: var(--mid-gray);
+    line-height: 1.55;
+  }
+
+  .vendor-how {
+    background: var(--black);
+    padding: 44px 52px;
+    display: grid; grid-template-columns: 240px 1fr; gap: 52px; align-items: start;
+  }
+
+  .vendor-how-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px; font-weight: 300; font-style: italic;
+    color: var(--white);
+    line-height: 1.2;
+  }
+  .vendor-how-title strong {
+    font-style: normal; font-weight: 600;
+    display: block;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .vendor-how-steps {
+    display: flex; flex-direction: column; gap: 20px;
+  }
+  .vendor-how-step {
+    display: flex; gap: 20px; align-items: flex-start;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .vendor-how-step:last-child { border-bottom: none; padding-bottom: 0; }
+  .vendor-how-step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px; font-weight: 600;
+    color: rgba(255,255,255,0.25);
+    line-height: 1;
+    min-width: 24px;
+  }
+  .vendor-how-step-text {
+    font-size: 13px; font-weight: 300; line-height: 1.7;
+    color: rgba(255,255,255,0.55);
+    padding-top: 4px;
+  }
+
+  /* ── MARKET ───────────────────────────────────────────────────── */
+  .market-section { background: var(--white); }
+
+  .market-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    background: var(--rule);
+    overflow: hidden;
+  }
+
+  .market-card {
+    background: var(--white);
+    padding: 40px 36px;
+    transition: background 0.2s;
+  }
+  .market-card:hover { background: var(--off-white); }
+
+  .market-card-tag {
+    display: inline-block;
+    font-size: 10px; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--mid-gray);
+    margin-bottom: 16px;
+  }
+
+  .market-card-area {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; font-weight: 400;
+    color: var(--black);
+    margin-bottom: 8px;
+  }
+
+  .market-card-hoods {
+    font-size: 13px; color: var(--mid-gray);
+    font-style: italic;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--rule-light);
+  }
+
+  .market-card-body {
+    font-size: 13px; font-weight: 300; line-height: 1.75;
+    color: var(--mid-gray);
+  }
+
+  .market-card-hospitals {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin-top: 18px;
+  }
+
+  .hosp-tag {
+    font-size: 11px; font-weight: 400;
+    color: var(--dark-gray);
+    background: var(--off-white);
+    border: 1px solid var(--rule);
+    padding: 4px 10px;
+  }
+
+  /* ── PROCESS ──────────────────────────────────────────────────── */
+  .process-section {
+    background: var(--black);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .process-section .container { position: relative; z-index: 2; }
+
+  .process-bg {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .process-section .section-title { color: var(--white); }
+  .process-section .section-intro { color: rgba(255,255,255,0.4); }
+  .process-section .section-eyebrow span { color: rgba(255,255,255,0.4); }
+  .process-section .section-eyebrow-line { background: rgba(255,255,255,0.2); }
+
+  .process-steps {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    background: rgba(255,255,255,0.06);
+    overflow: hidden;
+  }
+
+  .process-step {
+    background: rgba(255,255,255,0.02);
+    padding: 36px 32px;
+    display: flex; gap: 22px;
+    transition: background 0.2s;
+  }
+  .process-step:hover { background: rgba(255,255,255,0.04); }
+
+  .process-step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 44px; font-weight: 700;
+    color: rgba(255,255,255,0.1);
+    line-height: 1;
+    min-width: 40px;
+  }
+
+  .process-step-content {}
+  .process-step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px; font-weight: 600;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+  .process-step-body {
+    font-size: 13px; font-weight: 300; line-height: 1.75;
+    color: rgba(255,255,255,0.45);
+  }
+
+  /* ── COMMITMENTS ──────────────────────────────────────────────── */
+  .commitments-section { background: var(--off-white); }
+
+  .commitments-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    background: var(--rule);
+    overflow: hidden;
+  }
+
+  .commitment-card {
+    background: var(--white);
+    padding: 36px 28px;
+  }
+
+  .commitment-icon {
+    width: 32px; height: 32px;
+    background: var(--off-white);
+    border: 1px solid var(--rule);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
+
+  .commitment-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px; font-weight: 600;
+    color: var(--black);
+    margin-bottom: 12px;
+  }
+
+  .commitment-body {
+    font-size: 13px; font-weight: 300; line-height: 1.75;
+    color: var(--mid-gray);
+  }
+
+  /* ── ABOUT ────────────────────────────────────────────────────── */
+  .about-section { background: var(--white); }
+
+  .about-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+
+  .about-stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    background: var(--rule);
+    overflow: hidden;
+  }
+
+  .about-stat {
+    background: var(--off-white);
+    padding: 28px 24px;
+    text-align: center;
+  }
+
+  .about-stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 44px; font-weight: 600;
+    color: var(--black);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .about-stat-num span { font-size: 26px; color: var(--dark-gray); }
+
+  .about-stat-label {
+    font-size: 11px; font-weight: 300; color: var(--mid-gray);
+    line-height: 1.5;
+  }
+
+  .washburn-card {
+    margin-top: 32px;
+    background: var(--black);
+    padding: 28px 32px;
+    display: flex; gap: 20px; align-items: flex-start;
+  }
+
+  .washburn-badge {
+    font-size: 9px; font-weight: 600; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--black);
+    background: var(--white);
+    padding: 4px 10px;
+    white-space: nowrap;
+    margin-top: 3px;
+    flex-shrink: 0;
+  }
+
+  .washburn-text h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 600;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .washburn-text p {
+    font-size: 13px; font-weight: 300;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.65;
+  }
+
+  /* ── CTA ──────────────────────────────────────────────────────── */
+  .cta-section {
+    background: var(--black);
+    text-align: center;
+  }
+
+  .cta-section .section-title { color: var(--white); }
+  .cta-section .section-intro {
+    color: rgba(255,255,255,0.45);
+    margin: 0 auto 48px;
+  }
+  .cta-section .section-eyebrow span { color: rgba(255,255,255,0.35); }
+  .cta-section .section-eyebrow-line { background: rgba(255,255,255,0.15); }
+
+  .cta-cards {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px;
+    background: rgba(255,255,255,0.06);
+    margin-bottom: 56px;
+  }
+
+  .cta-card {
+    background: rgba(255,255,255,0.03);
+    border: none;
+    padding: 32px 28px;
+    text-align: left;
+  }
+
+  .cta-card-label {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: rgba(255,255,255,0.35);
+    margin-bottom: 10px;
+  }
+  .cta-card-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 300;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.4;
+  }
+
+  .cta-actions {
+    display: flex; gap: 16px; justify-content: center; align-items: center;
+  }
+
+  .cta-no-fee {
+    display: block;
+    font-size: 11px; color: rgba(255,255,255,0.25);
+    letter-spacing: 0.06em;
+    margin-top: 24px;
+    font-style: italic;
+  }
+
+  /* ── FOOTER ───────────────────────────────────────────────────── */
+  footer {
+    background: #050505;
+    padding: 36px 60px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px; font-weight: 400; color: rgba(255,255,255,0.3);
+  }
+  .footer-brand strong { color: rgba(255,255,255,0.6); font-weight: 600; }
+
+  .footer-note {
+    font-size: 11px; color: rgba(255,255,255,0.2);
+    text-align: center;
+    line-height: 1.7;
+  }
+
+  .footer-right {
+    font-size: 11px; color: rgba(255,255,255,0.25);
+    text-align: right;
+  }
+
+  /* ── ANIMATIONS ───────────────────────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow { animation: fadeUp 0.6s ease 0.1s both; }
+  .hero h1 { animation: fadeUp 0.7s ease 0.25s both; }
+  .hero-sub { animation: fadeUp 0.7s ease 0.4s both; }
+  .hero-actions { animation: fadeUp 0.7s ease 0.55s both; }
+  .hero-card { animation: fadeUp 0.8s ease 0.45s both; }
+
+  /* ── RESPONSIVE ───────────────────────────────────────────────── */
+  @media (max-width: 1024px) {
+    nav { padding: 0 32px; }
+    .nav-links { display: none; }
+    .hero-content { grid-template-columns: 1fr; gap: 48px; padding: 60px 32px; }
+    .hero-card { max-width: 480px; }
+    .container { padding: 72px 32px; }
+    .loan-grid { grid-template-columns: 1fr 1fr; }
+    .vendors-intro-row { grid-template-columns: 1fr; gap: 32px; }
+    .vendor-categories { grid-template-columns: 1fr; }
+    .market-grid { grid-template-columns: 1fr; }
+    .about-inner { grid-template-columns: 1fr; gap: 48px; }
+    .cta-cards { grid-template-columns: 1fr; }
+    .commitments-grid { grid-template-columns: 1fr 1fr; }
+    .process-steps { grid-template-columns: 1fr; }
+    .debt-callout { grid-template-columns: 1fr; }
+    .vendor-how { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 16px; text-align: center; }
+    .footer-right { text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <span class="program-name">White Coat Home Program</span>
+    <span class="team-name">Isaac Kuehn, Realtor</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#loan">Physician Loan</a></li>
+    <li><a href="#vendors">Vendor Network</a></li>
+    <li><a href="#markets">Our Markets</a></li>
+    <li><a href="#process">How It Works</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+  <a href="#cta" class="nav-cta">Get Started</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-line"></div>
+        <span>Twin Cities · Physician Homebuying</span>
+      </div>
+      <h1>A home program<br>built for <em>your</em><br>career.</h1>
+      <p class="hero-sub">
+        Medical professionals face a homebuying market designed for everyone else. The White Coat Home Program changes that — with a physician-specific loan, a trusted vendor network, and real estate expertise built for how doctors actually live.
+      </p>
+      <div class="hero-actions">
+        <a href="#cta" class="btn-primary">
+          Start Your Pre-Approval
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#loan" class="btn-ghost">Learn about the loan</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-title">Program Snapshot</div>
+      <div class="hero-stat">
+        <div class="stat-item">
+          <div class="stat-num">0<span>%</span></div>
+          <div class="stat-label">Down payment required up to $1M purchase price</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">$0</div>
+          <div class="stat-label">PMI — eliminated entirely for program members</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">$2<span>M+</span></div>
+          <div class="stat-label">Maximum loan size available</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">90</div>
+          <div class="stat-label">Days before start date — offer letters accepted</div>
+        </div>
+      </div>
+      <ul class="hero-card-list">
+        <li>Student loan debt excluded from DTI</li>
+        <li>Curated vendor discounts at closing</li>
+        <li>No program fees or enrollment costs</li>
+        <li>Top 100 MN Realtor expertise</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ELIGIBILITY BAR -->
+<div class="elig-bar">
+  <div class="elig-inner">
+    <span class="elig-label">Who Qualifies</span>
+    <div class="elig-tags">
+      <span class="elig-tag">MD / DO</span>
+      <span class="elig-tag">DDS / DMD</span>
+      <span class="elig-tag">PharmD</span>
+      <span class="elig-tag">DVM</span>
+      <span class="elig-tag">NP / PA</span>
+      <span class="elig-tag">OD / DPM</span>
+      <span class="elig-tag">Other Doctoral Healthcare Professionals</span>
+    </div>
+  </div>
+</div>
+
+<!-- PHYSICIAN LOAN -->
+<section class="loan-section" id="loan">
+  <div class="container">
+    <div class="section-eyebrow">
+      <div class="section-eyebrow-line"></div>
+      <span>Financing</span>
+    </div>
+    <h2 class="section-title">The <em>Physician Loan</em><br>— built for your reality.</h2>
+    <p class="section-intro">Traditional mortgage underwriting penalizes the defining features of a medical career. The physician loan is engineered around them.</p>
+
+    <div class="loan-grid">
+      <div class="loan-card">
+        <div class="loan-card-num">01</div>
+        <div class="loan-card-title">No PMI — Regardless of Down Payment</div>
+        <div class="loan-card-body">Private Mortgage Insurance is eliminated entirely — even at 0% down. On a $750,000 purchase, that's $400–$600 back in your pocket every month compared to a conventional loan.</div>
+        <span class="loan-card-highlight">Save $400–$600/mo</span>
+      </div>
+      <div class="loan-card">
+        <div class="loan-card-num">02</div>
+        <div class="loan-card-title">Zero to Low Down Payment</div>
+        <div class="loan-card-body">0% down on loans up to $1M. 5% down up to $1.5M. Keep your capital for practice buy-ins, investments, or a six-month emergency fund rather than a depleted down payment.</div>
+        <span class="loan-card-highlight">0% down to $1M</span>
+      </div>
+      <div class="loan-card">
+        <div class="loan-card-num">03</div>
+        <div class="loan-card-title">Student Debt Excluded</div>
+        <div class="loan-card-body">Deferred student loans are excluded from your debt-to-income calculation, or treated at your actual IBR payment rather than full balance. This is the single biggest underwriting advantage for most medical borrowers.</div>
+        <span class="loan-card-highlight">$250K debt → $0–$300/mo DTI</span>
+      </div>
+      <div class="loan-card">
+        <div class="loan-card-num">04</div>
+        <div class="loan-card-title">Offer Letter Accepted</div>
+        <div class="loan-card-body">Close up to 90 days before your employment start date using a signed offer letter. Critical for residents transitioning to attending roles, fellows, or physicians relocating for new positions.</div>
+        <span class="loan-card-highlight">90 days before start date</span>
+      </div>
+      <div class="loan-card">
+        <div class="loan-card-num">05</div>
+        <div class="loan-card-title">High Loan Limits</div>
+        <div class="loan-card-body">Finance homes up to $2M+ depending on your profile — covering the full range from Edina entry-level to Kenwood luxury. No conforming loan ceiling to work around.</div>
+        <span class="loan-card-highlight">Up to $2M+</span>
+      </div>
+      <div class="loan-card">
+        <div class="loan-card-num">06</div>
+        <div class="loan-card-title">Physician-Specific Lender</div>
+        <div class="loan-card-body">You work with a loan officer whose entire practice is built around the medical borrower — not a generalist who handles physician files occasionally. They understand call schedules, academic vs. private compensation, and fellowship timelines.</div>
+        <span class="loan-card-highlight">Dedicated specialist</span>
+      </div>
+    </div>
+
+    <div class="compare-wrap">
+      <div class="compare-title">Physician Loan vs. Conventional Mortgage vs. FHA</div>
+      <table class="compare">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Physician Loan</th>
+            <th>Conventional</th>
+            <th>FHA</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Down Payment</td>
+            <td><span class="check">0–5% available</span></td>
+            <td>5–20%</td>
+            <td>3.5%</td>
+          </tr>
+          <tr>
+            <td>PMI Required</td>
+            <td><span class="check">No</span></td>
+            <td><span class="x">Yes (&lt;20% down)</span></td>
+            <td><span class="x">Yes (MIP always)</span></td>
+          </tr>
+          <tr>
+            <td>Student Debt Treatment</td>
+            <td><span class="check">Excluded or IBR rate</span></td>
+            <td><span class="x">Full balance counted</span></td>
+            <td><span class="x">Full balance counted</span></td>
+          </tr>
+          <tr>
+            <td>Offer Letter Accepted</td>
+            <td><span class="check">Yes — up to 90 days</span></td>
+            <td><span class="x">Must be employed</span></td>
+            <td><span class="x">Must be employed</span></td>
+          </tr>
+          <tr>
+            <td>Loan Limits</td>
+            <td><span class="check">$2M+</span></td>
+            <td>$766,550 conforming</td>
+            <td>$498,257 limit</td>
+          </tr>
+          <tr>
+            <td>DTI Flexibility</td>
+            <td><span class="check">High (student debt excluded)</span></td>
+            <td>Standard 43% DTI</td>
+            <td>Standard 43% DTI</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="debt-callout">
+      <div>
+        <h3>The student debt calculation that changes everything.</h3>
+        <p>A physician with $250,000 in student debt faces a potential $2,500+ monthly payment counted against their DTI under conventional underwriting — making qualifying for a competitive purchase price difficult or impossible. The physician loan can exclude deferred balances entirely, or count only your actual IBR payment. That single factor often unlocks $200,000–$400,000 in additional purchasing power.</p>
+      </div>
+      <div class="debt-numbers">
+        <div class="debt-num-item">
+          <div class="num">$2,500<span style="font-size:18px;color:rgba(255,255,255,0.3)">/mo</span></div>
+          <div class="label">Conventional DTI hit on $250K debt</div>
+        </div>
+        <div class="debt-divider"></div>
+        <div class="debt-num-item">
+          <div class="num">$0–300<span style="font-size:18px;color:rgba(255,255,255,0.3)">/mo</span></div>
+          <div class="label">Physician loan DTI treatment</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VENDORS -->
+<section class="vendors-section" id="vendors">
+  <div class="container">
+    <div class="vendors-intro-row">
+      <div>
+        <div class="section-eyebrow">
+          <div class="section-eyebrow-line"></div>
+          <span>Member Benefits</span>
+        </div>
+        <h2 class="section-title">A trusted network<br>beyond <em>the transaction.</em></h2>
+        <p class="section-intro">Getting the keys is day one. The White Coat Home Program activates a curated vendor network at closing — vetted partners who understand that your time and standards are not negotiable.</p>
+      </div>
+      <p class="vendor-note">Every vendor in this network has been personally selected and agreed to provide program members with priority access, preferred pricing, or exclusive benefits. Isaac's name is behind every referral he makes.</p>
+    </div>
+
+    <div class="vendor-categories">
+      <div class="vendor-cat">
+        <div class="vendor-cat-header">
+          <span class="vendor-cat-name">Home Furnishings</span>
+          <span class="vendor-badge">15% off</span>
+        </div>
+        <div class="vendor-names">Crate & Barrel · West Elm</div>
+        <div class="vendor-benefit">15% member discount in-store and online, activated at closing via program code.</div>
+      </div>
+      <div class="vendor-cat">
+        <div class="vendor-cat-header">
+          <span class="vendor-cat-name">Home Furnishings</span>
+          <span class="vendor-badge">10–15% off</span>
+        </div>
+        <div class="vendor-names">Pottery Barn · Room & Board</div>
+        <div class="vendor-benefit">10% Pottery Barn discount plus priority design consultation at Room & Board's Minneapolis flagship ($300 value).</div>
+      </div>
+      <div class="vendor-cat">
+        <div class="vendor-cat-header">
+          <span class="vendor-cat-name">Moving Services</span>
+          <span class="vendor-badge">Priority access</span>
+        </div>
+        <div class="vendor-names">Local & National Partners</div>
+        <div class="vendor-benefit">Preferred pricing and priority scheduling with Twin Cities local movers. Discounted rates on national long-distance service.</div>
+      </div>
+      <div class="vendor-cat">
+        <div class="vendor-cat-header">
+          <span class="vendor-cat-name">Interior Design</span>
+          <span class="vendor-badge">Free consult</span>
+        </div>
+        <div class="vendor-names">Design Partner — TBD</div>
+        <div class="vendor-benefit">Complimentary 2-hour design consultation ($300 value) with a vetted Twin Cities–based interior designer.</div>
+      </div>
+      <div class="vendor-cat">
+        <div class="vendor-cat-header">
+          <span class="vendor-cat-name">Home Services</span>
+          <span class="vendor-badge">1st clean free</span>
+        </div>
+        <div class="vendor-names">Cleaning · Handyman · Landscaping</div>
+        <div class="vendor-benefit">First move-in cleaning complimentary. Preferred rates and priority scheduling on handyman and seasonal landscaping services.</div>
+      </div>
+      <div class="vendor-cat">
+        <div class="vendor-cat-header">
+          <span class="vendor-cat-name">Home Technology</span>
+          <span class="vendor-badge">Discounts</span>
+        </div>
+        <div class="vendor-names">Smart Home · Security · AV</div>
+        <div class="vendor-benefit">Installation discounts and reduced equipment/monitoring rates from vetted smart home and security partners.</div>
+      </div>
+      <div class="vendor-cat">
+        <div class="vendor-cat-header">
+          <span class="vendor-cat-name">Storage</span>
+          <span class="vendor-badge">1st month free</span>
+        </div>
+        <div class="vendor-names">Twin Cities Storage Partner</div>
+        <div class="vendor-benefit">First month of storage complimentary during your transition period.</div>
+      </div>
+      <div class="vendor-cat">
+        <div class="vendor-cat-header">
+          <span class="vendor-cat-name">Utilities Setup</span>
+          <span class="vendor-badge">Concierge</span>
+        </div>
+        <div class="vendor-names">Concierge Transfer Service</div>
+        <div class="vendor-benefit">Single-call utility transfer service handles internet, gas, electric, and subscriptions — so you can focus on actually moving in.</div>
+      </div>
+    </div>
+
+    <div class="vendor-how" style="margin-top: 40px;">
+      <div class="vendor-how-title">
+        How vendor access <strong>works</strong>
+      </div>
+      <div class="vendor-how-steps">
+        <div class="vendor-how-step">
+          <div class="vendor-how-step-num">1</div>
+          <div class="vendor-how-step-text">At closing, you receive a White Coat Home Program welcome packet with all vendor contacts, discount codes, and scheduling instructions.</div>
+        </div>
+        <div class="vendor-how-step">
+          <div class="vendor-how-step-num">2</div>
+          <div class="vendor-how-step-text">Retail discounts (Crate & Barrel, West Elm, etc.) are applied via a program code tied to your closing address and date — usable in-store or online.</div>
+        </div>
+        <div class="vendor-how-step">
+          <div class="vendor-how-step-num">3</div>
+          <div class="vendor-how-step-text">Service vendors are booked directly through the program directory. Isaac can facilitate introductions and scheduling for any vendor in the network.</div>
+        </div>
+        <div class="vendor-how-step">
+          <div class="vendor-how-step-num">4</div>
+          <div class="vendor-how-step-text">All benefits are complimentary. There are no program fees, enrollment costs, or obligations associated with vendor access.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKETS -->
+<section class="market-section" id="markets">
+  <div class="container">
+    <div class="section-eyebrow">
+      <div class="section-eyebrow-line"></div>
+      <span>Our Markets</span>
+    </div>
+    <h2 class="section-title">Deep expertise where<br>you <em>want to live.</em></h2>
+    <p class="section-intro">Eight years of focused work across the Twin Cities metro — covering the neighborhoods, price ranges, and property types most relevant to medical professionals.</p>
+
+    <div class="market-grid">
+      <div class="market-card">
+        <span class="market-card-tag">West Metro · Specialty Area</span>
+        <div class="market-card-area">West Metro Suburbs</div>
+        <div class="market-card-hoods">Edina · Saint Louis Park · Golden Valley</div>
+        <div class="market-card-body">Excellent schools, walkable amenities, and easy access to the region's major hospital systems. The sweet spot for physician families balancing career, community, and quality of life. Our deepest expertise and most active market.</div>
+        <div class="market-card-hospitals">
+          <span class="hosp-tag">HCMC</span>
+          <span class="hosp-tag">Abbott Northwestern</span>
+          <span class="hosp-tag">Hennepin Healthcare</span>
+          <span class="hosp-tag">Children's MN</span>
+        </div>
+      </div>
+      <div class="market-card">
+        <span class="market-card-tag">Minneapolis · Urban</span>
+        <div class="market-card-area">Southwest Minneapolis</div>
+        <div class="market-card-hoods">Linden Hills · Kenwood · Tangletown · Fulton</div>
+        <div class="market-card-body">Architecturally distinctive homes and boutique condominiums with strong appreciation, walkability to the Chain of Lakes, and proximity to downtown medical facilities. Ideal for physicians who want city access without sacrificing quality of life.</div>
+        <div class="market-card-hospitals">
+          <span class="hosp-tag">HCMC</span>
+          <span class="hosp-tag">Fairview</span>
+          <span class="hosp-tag">HealthPartners</span>
+        </div>
+      </div>
+      <div class="market-card">
+        <span class="market-card-tag">Saint Paul · East Metro</span>
+        <div class="market-card-area">Saint Paul Neighborhoods</div>
+        <div class="market-card-hoods">Mac-Groveland · Summit Hill · Highland Park</div>
+        <div class="market-card-body">Character-rich neighborhoods with exceptional architecture and strong value relative to comparable Minneapolis options. Proximity to east metro hospital systems and a vibrant, walkable community feel.</div>
+        <div class="market-card-hospitals">
+          <span class="hosp-tag">Regions Hospital</span>
+          <span class="hosp-tag">United Hospital</span>
+          <span class="hosp-tag">Children's MN</span>
+        </div>
+      </div>
+      <div class="market-card">
+        <span class="market-card-tag">Rochester · Referral Network</span>
+        <div class="market-card-area">Rochester Corridor</div>
+        <div class="market-card-hoods">Rochester · Byron · Stewartville</div>
+        <div class="market-card-body">Primary market for Mayo Clinic physicians and staff. We maintain a trusted referral network for Rochester-area buyers, ensuring you receive the same level of service and program benefits through our regional partners.</div>
+        <div class="market-card-hospitals">
+          <span class="hosp-tag">Mayo Clinic</span>
+          <span class="hosp-tag">Saint Marys</span>
+          <span class="hosp-tag">Methodist Hospital</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-section" id="process">
+  <div class="process-bg"></div>
+  <div class="container">
+    <div class="section-eyebrow">
+      <div class="section-eyebrow-line"></div>
+      <span>How It Works</span>
+    </div>
+    <h2 class="section-title">From first call<br>to <em>move-in day.</em></h2>
+    <p class="section-intro">Eight steps. One dedicated agent. A process designed around your schedule — not a generic homebuying template.</p>
+
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="process-step-num">1</div>
+        <div class="process-step-content">
+          <div class="process-step-title">Discovery Call</div>
+          <div class="process-step-body">A 20–30 minute conversation covering your timeline, target neighborhoods, budget, and employment situation. No commitment required. We'll determine if the physician loan is the right fit and what pre-approval will look like for your specific profile.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">2</div>
+        <div class="process-step-content">
+          <div class="process-step-title">Lender Introduction</div>
+          <div class="process-step-body">Direct introduction to our physician loan specialist. You receive a pre-approval letter built around your actual financial picture — including how your student debt is treated and whether an offer letter is sufficient for your timeline.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">3</div>
+        <div class="process-step-content">
+          <div class="process-step-title">Market Orientation</div>
+          <div class="process-step-body">Whether you're relocating from out of state or know the metro well, we walk through current conditions, neighborhood profiles, and realistic price expectations. Remote tours and virtual walkthroughs available for out-of-state buyers.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">4</div>
+        <div class="process-step-content">
+          <div class="process-step-title">Home Search</div>
+          <div class="process-step-body">Curated listings aligned to your criteria, with early access to off-market and pre-market properties where available. Showings scheduled around your availability — evenings and weekends included.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">5</div>
+        <div class="process-step-content">
+          <div class="process-step-title">Offer & Negotiation</div>
+          <div class="process-step-body">When you find the right home, we structure an offer built to compete — pricing strategy, escalation clauses, contingency management, and direct seller communication. We negotiate on your behalf at every stage.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">6</div>
+        <div class="process-step-content">
+          <div class="process-step-title">Under Contract</div>
+          <div class="process-step-body">We coordinate inspection, manage the appraisal timeline, and stay in continuous contact with your loan officer to keep the transaction on schedule. No dropped balls between real estate and lending.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">7</div>
+        <div class="process-step-content">
+          <div class="process-step-title">Closing</div>
+          <div class="process-step-body">A full closing briefing so there are no surprises at the table. We're present at closing or available by phone. You receive your White Coat Home Program welcome packet with all vendor information at closing.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">8</div>
+        <div class="process-step-content">
+          <div class="process-step-title">Move-In & Beyond</div>
+          <div class="process-step-body">We activate your vendor benefits, make partner introductions, and remain your resource beyond the transaction — contractor referrals, market updates, investment property consultation. Our relationship doesn't end at closing.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMITMENTS -->
+<section class="commitments-section">
+  <div class="container">
+    <div class="section-eyebrow">
+      <div class="section-eyebrow-line"></div>
+      <span>Our Standards</span>
+    </div>
+    <h2 class="section-title">What we <em>commit</em> to<br>every program member.</h2>
+    <p class="section-intro" style="margin-bottom: 48px;">Not a policy document. These are the working commitments that define how Isaac operates.</p>
+
+    <div class="commitments-grid">
+      <div class="commitment-card">
+        <div class="commitment-icon">👤</div>
+        <div class="commitment-title">Dedicated Point of Contact</div>
+        <div class="commitment-body">Isaac personally owns your transaction from first call to closing. No handoffs to junior staff. No files changing hands without full context.</div>
+      </div>
+      <div class="commitment-card">
+        <div class="commitment-icon">🗓</div>
+        <div class="commitment-title">Schedule-Aware Communication</div>
+        <div class="commitment-body">We work around your schedule. Evenings, weekends, and asynchronous communication are all on the table. We don't call between rounds or expect availability during clinic hours.</div>
+      </div>
+      <div class="commitment-card">
+        <div class="commitment-icon">$</div>
+        <div class="commitment-title">Transparent Pricing</div>
+        <div class="commitment-body">Compensation comes from the standard transaction commission. There are no program fees, enrollment costs, or hidden charges to access any benefit in the White Coat Home Program.</div>
+      </div>
+      <div class="commitment-card">
+        <div class="commitment-icon">⏱</div>
+        <div class="commitment-title">No Pressure Timeline</div>
+        <div class="commitment-body">Whether your move is three weeks out or 18 months away, we engage on your timeline. Early conversations typically produce better outcomes — reach out whenever you're ready.</div>
+      </div>
+      <div class="commitment-card">
+        <div class="commitment-icon">🏦</div>
+        <div class="commitment-title">Physician Loan Advocacy</div>
+        <div class="commitment-body">We stay actively involved in the lending process — not just as a referral source. We ensure real estate and loan timelines are aligned and that you have an advocate on both sides.</div>
+      </div>
+      <div class="commitment-card">
+        <div class="commitment-icon">✓</div>
+        <div class="commitment-title">Vendor Accountability</div>
+        <div class="commitment-body">Every vendor has been personally vetted by Isaac. If a partner falls short of expectations, he wants to hear about it — and will address it directly. His name is behind every referral in the network.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="container">
+    <div class="about-inner">
+      <div>
+        <div class="section-eyebrow">
+          <div class="section-eyebrow-line"></div>
+          <span>Isaac Kuehn, Realtor</span>
+        </div>
+        <h2 class="section-title">Eight years.<br>West metro <em>specialist.</em></h2>
+        <p class="section-intro" style="margin-bottom: 28px;">
+          Isaac Kuehn is a Minneapolis-based Realtor specializing in residential properties across the $400K–$2M range. He brings a systematic, data-driven approach to every transaction — built on deep market knowledge and a genuine belief that where you live shapes how you live.
+        </p>
+        <p style="font-size: 15px; font-weight: 300; line-height: 1.75; color: var(--mid-gray); margin-bottom: 0;">
+          Isaac operates under DRG, one of the Twin Cities' leading independent brokerages — with the personal service of an individual agent and the infrastructure of an established brokerage behind every transaction.
+        </p>
+
+        <div class="washburn-card">
+          <span class="washburn-badge">Featured Listing</span>
+          <div class="washburn-text">
+            <h4>The Washburn House — Tangletown</h4>
+            <p>A 15-unit boutique condominium development at 50th & Lyndale. Residences from $800K to $1.5M. Architecturally distinctive urban living with immediate access to the Chain of Lakes — ideal for physicians seeking something more than a standard condo.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="about-stats">
+          <div class="about-stat">
+            <div class="about-stat-num">Top<span> 100</span></div>
+            <div class="about-stat-label">Minnesota agents statewide in 2025 out of ~14,000 licensed</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">5<span>×</span></div>
+            <div class="about-stat-label">Consecutive Top 500 REALTOR® recognition, 2021–2025</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">8<span>yrs</span></div>
+            <div class="about-stat-label">Focused west metro expertise since entering the market</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">$2<span>M</span></div>
+            <div class="about-stat-label">Upper range of active transactions in our specialty market</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="cta">
+  <div class="container" style="padding-top: 100px; padding-bottom: 100px;">
+    <div class="section-eyebrow" style="justify-content: center; margin-bottom: 20px;">
+      <div class="section-eyebrow-line"></div>
+      <span>Get Started</span>
+      <div class="section-eyebrow-line"></div>
+    </div>
+    <h2 class="section-title" style="color: var(--white);">Ready to find your<br><em>White Coat Home?</em></h2>
+    <p class="section-intro">The first step is a 20-minute conversation — no commitment, no pressure. We'll map out your options and connect you with our physician loan specialist.</p>
+
+    <div class="cta-cards">
+      <div class="cta-card">
+        <div class="cta-card-label">Start Here</div>
+        <div class="cta-card-value">20-minute discovery call — physician loan overview and market orientation</div>
+      </div>
+      <div class="cta-card">
+        <div class="cta-card-label">Then</div>
+        <div class="cta-card-value">Pre-approval with our physician loan specialist — student debt and offer letter included</div>
+      </div>
+      <div class="cta-card">
+        <div class="cta-card-label">Your Goal</div>
+        <div class="cta-card-value">A home in the Twin Cities metro with a loan, a network, and a team built for your career</div>
+      </div>
+    </div>
+
+    <div class="cta-actions">
+      <a href="tel:+16125551234" class="btn-primary">
+        Schedule a Discovery Call
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="/cdn-cgi/l/email-protection#650c0b030a25110d000401130c160a17164b060a08" class="btn-ghost" style="color: rgba(255,255,255,0.5); border-bottom-color: rgba(255,255,255,0.2);">
+        Send an email instead
+      </a>
+    </div>
+    <span class="cta-no-fee">No program fees. No enrollment. Just better homebuying for Twin Cities medical professionals — with Isaac Kuehn, Realtor.</span>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <strong>White Coat Home Program</strong> · Isaac Kuehn, Realtor
+  </div>
+  <div class="footer-note">
+    Isaac Kuehn, Realtor · DRG Brokerage · Minneapolis, MN<br>
+    West Metro Specialist · $400K–$2M · Edina · Saint Louis Park · Golden Valley · Minneapolis
+  </div>
+  <div class="footer-right">
+    Top 100 Minnesota Agent, 2025<br>
+    Top 500 REALTOR®, 2021�
